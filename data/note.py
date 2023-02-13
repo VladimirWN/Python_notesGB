@@ -11,6 +11,8 @@ class Note:
         Note.u_id += 1
         self.__id = Note.u_id
         self.__update_date = datetime.datetime.now()
+        self.__index = 0
+        self.__items_lst = [self.__id, self.__title, self.__text, self.__update_date]
 
     def edit_note(self):
         point = -1
@@ -30,11 +32,23 @@ class Note:
             .format(self.__id, self.__title, datetime.datetime.strftime(self.__update_date, "%d.%m.%y %H:%M"),
                     self.__text)
 
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.__index < 4:
+            i = self.__index
+            self.__index += 1
+            return self.__items_lst[i]
+        else:
+            self.__index = 0
+            raise StopIteration
+
 
 def check_title(msg):
     inp = str(input(msg))
     while True:
-        if inp or inp.isspace():
+        if inp.strip():
             return inp
         else:
             print("Название не может быть пустым.")

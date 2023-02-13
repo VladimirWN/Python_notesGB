@@ -10,7 +10,7 @@ def menu():
 
 def menu_inp(num):
     while True:
-        num = int(input('Введите пункт меню: '))
+        num = check_digit('Введите пункт меню: ')
         if num not in range(0, num + 1):
             print('Такого пункта меню нет')
         else:
@@ -21,3 +21,13 @@ def note_edit_menu():
     print("1 - изменить название\n"
           "2 - изменить содержание\n"
           "0 - отмена")
+
+
+def check_digit(msg):
+    while True:
+        num = input(msg)
+        if not num.isdigit():
+            print('Значение должно содержать только цифры, повторите ввод. ', end='')
+        else:
+            break
+    return int(num)

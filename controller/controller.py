@@ -5,10 +5,6 @@ from data.note import Note
 def button_click():
     point = -1
     while point != 0:
-        note = Note("12", "123453")
-        print(note)
-        note1 = Note("23444", "465754")
-        print(note1)
         menu.menu()
         point = int(menu.menu_inp(5))
         if point == 1:

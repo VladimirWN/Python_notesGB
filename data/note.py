@@ -9,10 +9,10 @@ class Note:
         self.__title = title
         self.__text = text
         Note.u_id += 1
-        self.__id = Note.u_id
+        self.__uid = Note.u_id
         self.__update_date = datetime.datetime.now()
         self.__index = 0
-        self.__items_lst = [self.__id, self.__title, self.__text, self.__update_date]
+        self.__items_lst = [self.__uid, self.__title, self.__text, self.__update_date]
 
     def edit_note(self):
         point = -1
@@ -29,7 +29,7 @@ class Note:
 
     def __str__(self) -> str:
         return "ID: {}\nНазвание: {}\nВремя последнего изенения: {}\nСодержание заметки: {}"\
-            .format(self.__id, self.__title, datetime.datetime.strftime(self.__update_date, "%d.%m.%y %H:%M"),
+            .format(self.__uid, self.__title, datetime.datetime.strftime(self.__update_date, "%d.%m.%y %H:%M"),
                     self.__text)
 
     def __iter__(self):
@@ -64,3 +64,17 @@ def create_note():
         return Note(title, text)
     else:
         print("Отмена добавления заметки.")
+
+
+def convert_data_from_file_to_objects_note(lst: list):
+    notes_lst = list()
+    for i in lst:
+        temp = i[0].split(";")
+        uid, title, text = temp[0], temp[1], temp[2]
+        date = datetime.datetime.strptime(temp[3], "%Y-%m-%d %H:%M:%S.%f")
+        note = Note(title, text)
+        note.__uid = uid
+        note.__update_date = date
+        Note.u_id = int(uid)
+        notes_lst.append(note)
+    return notes_lst

@@ -1,8 +1,11 @@
+from view import menu
+
+
 def button_click():
     point = -1
     while point != 0:
-        # menu interface
-        # point =
+        menu.menu()
+        menu.menu_inp()
         if point == 1:
             pass  # all list
         elif point == 2:

@@ -11,7 +11,7 @@ def menu():
 def menu_inp():
     while True:
         num = int(input('Введите пункт меню: '))
-        if num not in range(0, 9):
+        if num not in range(0, 6):
             print('Такого пункта меню нет')
         else:
             return num

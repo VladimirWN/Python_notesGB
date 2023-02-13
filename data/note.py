@@ -56,7 +56,7 @@ def check_title(msg):
 
 
 def create_note():
-    title = check_title("Введите название заметки: ")
+    title = check_title("Введите название новой заметки: ")
     text = input("Текст заметки: ")
     print(f"Название: {title}\nТекст:\n{text}\nПодтверждаете создание новой заметки (y/n)?")
     if input() == "y":

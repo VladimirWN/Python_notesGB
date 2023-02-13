@@ -1,11 +1,16 @@
 from view import menu
+from data.note import Note
 
 
 def button_click():
     point = -1
     while point != 0:
+        note = Note("12", "123453")
+        print(note)
+        note1 = Note("23444", "465754")
+        print(note1)
         menu.menu()
-        menu.menu_inp()
+        point = int(menu.menu_inp(5))
         if point == 1:
             pass  # all list
         elif point == 2:
@@ -20,3 +25,5 @@ def button_click():
             input('Для возврата в главное меню введите любой символ.\n')
     else:
         print('Завершение работы программы.')
+
+button_click()

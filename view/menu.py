@@ -8,10 +8,16 @@ def menu():
           '0 - выход из программы\n')
 
 
-def menu_inp():
+def menu_inp(num):
     while True:
         num = int(input('Введите пункт меню: '))
-        if num not in range(0, 6):
+        if num not in range(0, num + 1):
             print('Такого пункта меню нет')
         else:
             return num
+
+
+def note_edit_menu():
+    print("1 - изменить название\n"
+          "2 - изменить содержание\n"
+          "0 - отмена")

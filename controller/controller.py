@@ -2,6 +2,7 @@ from view import menu
 from data.note import Note
 from data import note
 from util import csv_writer_reader
+import service.service as sv
 
 
 def button_click():
@@ -11,19 +12,22 @@ def button_click():
         menu.menu()
         point = int(menu.menu_inp(5))
         if point == 1:
-            print_actual_notes(actual_notes)
+            print_actual_notes(actual_notes)  # print all notes
         elif point == 2:
             pass  # search
         elif point == 3:
-            new_note = note.create_note()
+            new_note = note.create_note()  # add note
             if new_note:
                 actual_notes.append(new_note)
                 csv_writer_reader.write_to_file(actual_notes)
         elif point == 4:
             print_actual_notes(actual_notes)  # edit
-            pass
+            actual_notes = sv.edit_note(actual_notes)
+            csv_writer_reader.write_to_file(actual_notes)
         elif point == 5:
-            pass  # delete
+            print_actual_notes(actual_notes)  # delete
+            actual_notes = sv.delete_note(actual_notes)
+            csv_writer_reader.write_to_file(actual_notes)
         if point != 0:
             input('Для возврата в главное меню введите любой символ.\n')
     else:

@@ -11,9 +11,7 @@ def button_click():
         menu.menu()
         point = int(menu.menu_inp(5))
         if point == 1:
-            print("Текущие заметки:")
-            for i in actual_notes:
-                print(i, "\n")
+            print_actual_notes(actual_notes)
         elif point == 2:
             pass  # search
         elif point == 3:
@@ -22,10 +20,17 @@ def button_click():
                 actual_notes.append(new_note)
                 csv_writer_reader.write_to_file(actual_notes)
         elif point == 4:
-            pass  # edit
+            print_actual_notes(actual_notes)  # edit
+            pass
         elif point == 5:
             pass  # delete
         if point != 0:
             input('Для возврата в главное меню введите любой символ.\n')
     else:
         print('Завершение работы программы.')
+
+
+def print_actual_notes(lst):
+    print("Текущие заметки:")
+    for i in lst:
+        print(i, "\n")

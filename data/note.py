@@ -69,9 +69,8 @@ def create_note():
 def convert_data_from_file_to_objects_note(lst: list):
     notes_lst = list()
     for i in lst:
-        temp = i[0].split(";")
-        uid, title, text = temp[0], temp[1], temp[2]
-        date = datetime.datetime.strptime(temp[3], "%Y-%m-%d %H:%M:%S.%f")
+        uid, title, text = i[0], i[1], i[2]
+        date = datetime.datetime.strptime(i[3], "%Y-%m-%d %H:%M:%S.%f")
         note = Note(title, text)
         note.__uid = uid
         note.__update_date = date

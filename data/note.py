@@ -14,6 +14,15 @@ class Note:
         self.__index = 0
         self.__items_lst = [self.__uid, self.__title, self.__text, self.__update_date]
 
+    def get_id(self):
+        return self.__uid
+
+    def get_title(self):
+        return self.__title
+
+    def get_date(self):
+        return self.__update_date
+
     def edit_note(self):
         point = -1
         while point != 0:

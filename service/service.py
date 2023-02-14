@@ -1,27 +1,28 @@
 import datetime
 
-from data.note import Note
-
 
 def check_digit(msg):
     while True:
         num = input(msg)
-        if not num.isdigit():
-            print('Значение должно содержать только цифры, повторите ввод. ', end='')
+
+        try:
+            num = int(num)
+        except ValueError:
+            print('Значение должно содержать только цифры, повторите ввод. ')
         else:
             break
-    return int(num)
+    return num
 
 
-def choice_current_id(lst: list):
+def choice_current_id(lst: list, current_id=-1):
     id_lst = [j.get_id() for j in lst]
-    print("id: ", id_lst)
     while True:
-        current_id = check_digit("ID искомой заметки: ")
         if current_id in id_lst:
             return current_id
-        else:
+        elif current_id != -1:
             print("Данного ID нет.")
+        print("id: ", id_lst)
+        current_id = check_digit("ID искомой заметки: ")
 
 
 def edit_note(lst: list):

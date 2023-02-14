@@ -12,19 +12,20 @@ def button_click():
         point = int(menu.menu_inp(5))
         if point == 1:
             print_actual_notes(actual_notes)  # print all notes
+            select_note(actual_notes)  # select one note
         elif point == 2:
-            sv.search_by_date(actual_notes)  # search
+            sv.search_by_date(actual_notes)  # search by date
         elif point == 3:
             new_note = note.create_note()  # add note
             if new_note:
                 actual_notes.append(new_note)
                 csv_writer_reader.write_to_file(actual_notes)
         elif point == 4:
-            print_actual_notes(actual_notes)  # edit
+            print_actual_notes(actual_notes)  # edit note
             actual_notes = sv.edit_note(actual_notes)
             csv_writer_reader.write_to_file(actual_notes)
         elif point == 5:
-            print_actual_notes(actual_notes)  # delete
+            print_actual_notes(actual_notes)  # delete note
             actual_notes = sv.delete_note(actual_notes)
             csv_writer_reader.write_to_file(actual_notes)
         if point != 0:
@@ -36,4 +37,14 @@ def button_click():
 def print_actual_notes(lst):
     print("Текущие заметки:")
     for i in lst:
-        print(i, "\n")
+        print(f"ID: {i.get_id()}, Название: \"{i.get_title()}\", дата изменения: {i.get_simple_date()}")
+
+
+def select_note(lst):
+    current_id = sv.check_digit("Развернуть заметку? (введите ID заметки / для отмены - \"-1\": ")
+    if current_id != -1:
+        current_id = sv.choice_current_id(lst, current_id)
+        for i in lst:
+            if current_id == i.get_id():
+                print(i)
+                return

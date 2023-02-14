@@ -1,6 +1,4 @@
 import datetime
-from typing import Any
-
 from view import menu
 
 
@@ -25,6 +23,9 @@ class Note:
     def get_date(self):
         return self.__update_date
 
+    def get_simple_date(self):
+        return datetime.datetime.strftime(self.__update_date, "%d.%m.%y %H:%M")
+
     def set_date(self, date):
         self.__update_date = date
 
@@ -47,7 +48,7 @@ class Note:
         self.__update_date = datetime.datetime.now()
 
     def __str__(self) -> str:
-        return "ID: {}\nНазвание: {}\nВремя последнего изенения: {}\nСодержание заметки: {}"\
+        return "ID: {}\nНазвание: {}\nВремя последнего изенения: {}\nСодержание заметки: {}" \
             .format(self.__uid, self.__title, datetime.datetime.strftime(self.__update_date, "%d.%m.%y %H:%M"),
                     self.__text)
 

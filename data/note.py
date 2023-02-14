@@ -96,6 +96,4 @@ def convert_data_from_file_to_objects_note(lst: list):
         note.set_date(date)
         Note.u_id = int(uid)
         notes_lst.append(note)
-        print(Note.u_id)
-        print(note)
     return notes_lst

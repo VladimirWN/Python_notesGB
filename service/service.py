@@ -1,3 +1,5 @@
+import datetime
+
 from data.note import Note
 
 
@@ -42,3 +44,17 @@ def delete_note(lst: list):
             print(f"Заметка ID: {i.get_id()}, \"{i.get_title()}\" удалена!")
             lst.remove(i)
             return lst
+
+
+def search_by_date(lst):
+    while True:
+        inp_date = input("Введите дату в формате: \"ГГГГ-ММ-ДД\": ")
+        try:
+            search_date = datetime.datetime.strptime(inp_date, "%Y-%m-%d")
+        except ValueError:
+            print("Неверный формат даты")
+        else:
+            break
+    for i in lst:
+        if search_date == i.get_date().date():
+            print(i)

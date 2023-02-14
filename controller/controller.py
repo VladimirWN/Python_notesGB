@@ -1,5 +1,4 @@
 from view import menu
-from data.note import Note
 from data import note
 from util import csv_writer_reader
 import service.service as sv
@@ -14,7 +13,7 @@ def button_click():
         if point == 1:
             print_actual_notes(actual_notes)  # print all notes
         elif point == 2:
-            pass  # search
+            sv.search_by_date(actual_notes)  # search
         elif point == 3:
             new_note = note.create_note()  # add note
             if new_note:

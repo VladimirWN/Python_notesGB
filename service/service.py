@@ -56,5 +56,5 @@ def search_by_date(lst):
         else:
             break
     for i in lst:
-        if search_date == i.get_date().date():
+        if search_date.date() == i.get_date().date():
             print(i)

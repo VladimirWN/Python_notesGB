@@ -1,4 +1,6 @@
 import datetime
+from typing import Any
+
 from view import menu
 
 
@@ -23,6 +25,12 @@ class Note:
     def get_date(self):
         return self.__update_date
 
+    def set_date(self, date):
+        self.__update_date = date
+
+    def set_uid(self, uid):
+        self.__uid = uid
+
     def edit_note(self):
         point = -1
         while point != 0:
@@ -30,8 +38,10 @@ class Note:
             point = int(menu.menu_inp(2))
             if point == 1:
                 self.__title = check_title("Введите новое название: ")
+                point = 0
             elif point == 2:
                 self.__text = input("Введите новый текст заметки: ")
+                point = 0
             elif point == 0:
                 print("Отмена изменений.")
         self.__update_date = datetime.datetime.now()
@@ -42,6 +52,7 @@ class Note:
                     self.__text)
 
     def __iter__(self):
+        self.__items_lst = [self.__uid, self.__title, self.__text, self.__update_date]
         return self
 
     def __next__(self):
@@ -78,11 +89,13 @@ def create_note():
 def convert_data_from_file_to_objects_note(lst: list):
     notes_lst = list()
     for i in lst:
-        uid, title, text = i[0], i[1], i[2]
+        uid, title, text = int(i[0]), i[1], i[2]
         date = datetime.datetime.strptime(i[3], "%Y-%m-%d %H:%M:%S.%f")
         note = Note(title, text)
-        note.__uid = uid
-        note.__update_date = date
+        note.set_uid(uid)
+        note.set_date(date)
         Note.u_id = int(uid)
         notes_lst.append(note)
+        print(Note.u_id)
+        print(note)
     return notes_lst

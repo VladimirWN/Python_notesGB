@@ -13,7 +13,7 @@ def check_digit(msg):
 
 def choice_current_id(lst: list):
     id_lst = [j.get_id() for j in lst]
-    print(id_lst)
+    print("id: ", id_lst)
     while True:
         current_id = check_digit("ID искомой заметки: ")
         if current_id in id_lst:
@@ -24,10 +24,15 @@ def choice_current_id(lst: list):
 
 def edit_note(lst: list):
     current_id = choice_current_id(lst)
-    for i in lst:
-        if current_id == i.get_id():
-            i = Note.edit_note(i)
-            return lst
+    result_lst = list()
+    for i in range(len(lst)):
+        if current_id == lst[i].get_id():
+            temp = lst[i]
+            temp.edit_note()
+            result_lst.append(temp)
+        else:
+            result_lst.append(lst[i])
+    return result_lst
 
 
 def delete_note(lst: list):

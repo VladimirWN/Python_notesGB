@@ -11,16 +11,29 @@ def check_digit(msg):
     return int(num)
 
 
-def edit_note(lst):
-    id_lst = [i[0] for i in lst]
+def choice_current_id(lst: list):
+    id_lst = [j.get_id() for j in lst]
+    print(id_lst)
     while True:
-        current_id = check_digit("ID изменяеймой заметки: ")
+        current_id = check_digit("ID искомой заметки: ")
         if current_id in id_lst:
-            break
+            return current_id
         else:
             print("Данного ID нет.")
+
+
+def edit_note(lst: list):
+    current_id = choice_current_id(lst)
     for i in lst:
-        if current_id == i[0]:
+        if current_id == i.get_id():
             i = Note.edit_note(i)
-            break
-    return lst
+            return lst
+
+
+def delete_note(lst: list):
+    current_id = choice_current_id(lst)
+    for i in lst:
+        if current_id == i.get_id():
+            print(f"Заметка ID: {i.get_id()}, \"{i.get_title()}\" удалена!")
+            lst.remove(i)
+            return lst
